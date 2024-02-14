@@ -1,0 +1,13 @@
+{
+  "name": "final-project",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Kjirsten Hernandez <sandlot7665@yahoo.com>",
+  "dependencies": {
+    "parcel": "^2.11.0"
+  }
+}
