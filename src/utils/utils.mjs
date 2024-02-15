@@ -1,20 +1,7 @@
 const apiURL =
   "https://api.thecatapi.com/v1/images/search?limit=3&api_key=live_vYBougwwbfP7f8jXBY8yn9ZffrNnOREGScRBlKkw9QTQOX9ZtYv6C1dNceQuRbAZ";
 
-export async function getData() {
-  const response = await fetch(apiURL);
-  const data = await convertToJson(response);
-  return data.Result;
-}
-
-export function convertToJson(res) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    throw new Error("Bad Response");
-  }
-}
-
+// Load the dynamic header and footer
 export async function loadPartials(
   headerID,
   footerID,
@@ -38,4 +25,34 @@ export async function loadPartials(
   header_element.insertAdjacentHTML("afterbegin", header_template);
   footer_element.insertAdjacentHTML("afterbegin", footer_template);
   nav_element.insertAdjacentElement("afterbegin", nav_template);
+}
+
+// General function to render any given template
+export function renderListWithTemplate(
+  templateFunction, //the function used to build the card
+  parentElement, //target element
+  data, //array of information to be made into the list
+  image, //image URL from api
+  position = "afterbegin" //where to place the inserted HTML
+) {
+  const listItems = data.map((cat) => templateFunction(cat, image));
+
+  parentElement.insertAdjacentHTML(position, listItems.join(""));
+}
+
+// Get cat identification from URL
+export function getParams(criteria) {
+  const query = window.location.search;
+  const param = new URLSearchParams(query);
+  const cat = param.get(criteria);
+
+  return cat;
+}
+
+export function getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
+
+export function setLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
 }

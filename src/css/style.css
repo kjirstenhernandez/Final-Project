@@ -42,7 +42,7 @@ h5, h6, p, span {
 /* ------ Header ----- */
 
 
-header div{
+header > div{
   background-color: var(--primary-color);
   text-align: center;
   font-family: var(--header1-text);
@@ -93,6 +93,68 @@ header img{
         text-transform: uppercase;
         
     }
+
+
+/* ----- Footer ----- */
+
+footer {
+  font-family: var(--paragraph-text);
+  color: var(--darkfont-color);
+  background-color: var(--secondary-color);
+  padding: 2rem 1rem;
+  margin-top: 10rem;
+}
+
+footer a{
+  color: var(--dark-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+footer a:hover{
+  color: #ffffff;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-main {
+  display: flex;
+  margin-bottom: 4rem;
+}
+
+.footer-column {
+  flex-basis: 200px;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.footer-heading {
+  margin-bottom: 1rem;
+}
+
+.footer-link {
+  display: block;
+  width: max-content;
+  padding: 5px 10px; 
+  margin: 0 auto;
+}
+
+footer-bottom {
+  display: flex;
+}
+
+.copyright {
+  margin-right: auto;
+
+}
+
+.footer-social{
+  font-size: 20px;
+  margin-left: 1rem; 
+}
 
 
 /* ============================================================= */
@@ -209,3 +271,39 @@ header img{
       to {opacity: 1}
     }
 
+/* ============================================================= */
+/*                          HOME PAGE
+/* ============================================================= */
+
+    /* ============== Medium Screens ================ */
+    @media only screen and (max-width: 1000px) {
+      
+
+
+    }
+    
+    
+    /* ============== Small Screens ================ */
+    @media screen and (max-width: 600px) {
+
+/* ----- Footer------ */
+      .navigation {
+        flex-direction: column;
+    }
+
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .nav-list li{
+        padding: 1rem;
+    }
+
+    .footer-main {
+        flex-direction: column;
+    }
+
+
+
+      /* NO CODE BEYOND THIS POINT */
+    }

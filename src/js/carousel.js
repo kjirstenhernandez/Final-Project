@@ -1,13 +1,13 @@
 const element = document.querySelector(".hero");
 const apiUrl =
   "https://api.thecatapi.com/v1/images/search?limit=3&api_key=live_vYBougwwbfP7f8jXBY8yn9ZffrNnOREGScRBlKkw9QTQOX9ZtYv6C1dNceQuRbAZ";
-const data = await (await fetch(apiUrl)).json();
+const init = await fetch(apiUrl);
+const data = await init.json();
 
 let div = buildGrid(data);
-let slideIndex = 1;
 
+//https://www.w3schools.com/howto/howto_js_slideshow.asp
 document.querySelector("#carousel").innerHTML = div;
-showSlides(slideIndex);
 
 function buildGrid(data) {
   let grid = `
@@ -53,32 +53,24 @@ function buildGrid(data) {
   return grid;
 }
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides((slideIndex += n));
-}
+let slideIndex = 0;
+showSlides();
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides((slideIndex = n));
-}
-
-function showSlides(n) {
+function showSlides() {
   let i;
   let slides = document.getElementsByClassName("mySlides");
   let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
   for (i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
   }
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
   slides[slideIndex - 1].style.display = "block";
   dots[slideIndex - 1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
 }

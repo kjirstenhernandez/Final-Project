@@ -1,29 +1,36 @@
-export default class BreedList{
+import { renderListWithTemplate } from "../utils/utils.mjs";
 
-    constructor (data, parentElement) {
-        this.dataSource = data;
-        this.element = parentElement;
-    }
+export default class BreedList {
+  constructor(data, parentElement) {
+    this.dataSource = data;
+    this.element = parentElement;
+  }
 
-    async initialize(){
-        buildCatList(data);
-        }
+  async initialize() {
+    const catData = await this.dataSource.getData();
+    console.log(catData);
+    const imageData = await this.dataSource.getImageList();
+    console.log(imageData);
+    this.buildCatList(catData, imageData);
+  }
 
-    // buildList(){}
+  // buildList(){}
 
-    buildCatList(catData) {
-        renderListWithTemplate(catCardTemplate, this.element, catData)
-    }
-
+  buildCatList(catData, imageData) {
+    console.log(imageData);
+    renderListWithTemplate(basicCatCardTemplate, this.element, catData);
+  }
 }
 
-function catCardTemplate(cat) {
-    return `<li class="cat-card">
-    <a href="/cat_detail/?cat=${cat.id}">
+// basic template for each cat card (used for "Breeds")
+function basicCatCardTemplate(cat, image) {
+  return `<li class="cat-card">
+    <a class="card_image" href="/breed_detail/?cat=${cat.id}">
         <img
-            src="https://api.thecatapi.com/v1/images/search?breed_ids=${cat.id}"
-            alt="${cat.name} Cat">
-        <p class="card_name>${cat.name}</p>
+            src="${image}"
+            alt="${cat.name} Cat"
+            width="100">
+        <p class="card_name">${cat.name}</p>
     </a>
     </li>`;
 }
