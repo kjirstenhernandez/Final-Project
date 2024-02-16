@@ -22,9 +22,11 @@ export async function loadPartials(
   const footer_template = await footer_response.text();
   const nav_template = await nav_response.text();
 
+  // console.log(header_template, footer_template, nav_template);
+
   header_element.insertAdjacentHTML("afterbegin", header_template);
   footer_element.insertAdjacentHTML("afterbegin", footer_template);
-  nav_element.insertAdjacentElement("afterbegin", nav_template);
+  nav_element.insertAdjacentHTML("afterbegin", nav_template);
 }
 
 // General function to render any given template

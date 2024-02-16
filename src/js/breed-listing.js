@@ -13,7 +13,7 @@ loadPartials(
   "header",
   "footer",
   "navigation",
-  "../public/partials/header.html",
-  "../public/partials/footer.html",
-  "../public/partials/navigation.html"
+  "/public/partials/header.html",
+  "/public/partials/footer.html",
+  "/public/partials/navigation.html"
 );

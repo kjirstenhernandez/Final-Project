@@ -2,9 +2,10 @@
   "name": "final-project",
   "version": "1.0.0",
   "description": "",
+  "source": "src/index.html",
   "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "start": "parcel",
+    "build": "parcel build"
   },
   "author": "Kjirsten Hernandez <sandlot7665@yahoo.com>",
   "dependencies": {

@@ -8,16 +8,14 @@ export default class BreedList {
 
   async initialize() {
     const catData = await this.dataSource.getData();
-    console.log(catData);
     const imageData = await this.dataSource.getImageList();
-    console.log(imageData);
+
     this.buildCatList(catData, imageData);
   }
 
   // buildList(){}
 
   buildCatList(catData, imageData) {
-    console.log(imageData);
     renderListWithTemplate(basicCatCardTemplate, this.element, catData);
   }
 }
