@@ -1,5 +1,6 @@
 const apiURL =
   "https://api.thecatapi.com/v1/images/search?limit=3&api_key=live_vYBougwwbfP7f8jXBY8yn9ZffrNnOREGScRBlKkw9QTQOX9ZtYv6C1dNceQuRbAZ";
+const imageBase = "../public/json/images.json";
 
 // Load the dynamic header and footer
 export async function loadPartials(
@@ -8,7 +9,7 @@ export async function loadPartials(
   navID,
   headerPath,
   footerPath,
-  navPath
+  navPath,
 ) {
   const header_element = document.getElementById(headerID);
   const footer_element = document.getElementById(footerID);
@@ -34,10 +35,10 @@ export function renderListWithTemplate(
   templateFunction, //the function used to build the card
   parentElement, //target element
   data, //array of information to be made into the list
-  image, //image URL from api
-  position = "afterbegin" //where to place the inserted HTML
+  position = "afterbegin", //where to place the inserted HTML
+  imageList, // hopefully a list of images....
 ) {
-  const listItems = data.map((cat) => templateFunction(cat, image));
+  const listItems = data.map((cat) => templateFunction(cat));
 
   parentElement.insertAdjacentHTML(position, listItems.join(""));
 }
@@ -57,4 +58,32 @@ export function getLocalStorage(key) {
 
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
+}
+
+export function getTextFromHTML(text) {
+  if (text === null || text === "") return false;
+  else text = text.toString();
+
+  // Regular expression to identify HTML tags in
+  // the input string. Replacing the identified
+  // HTML tag with a null string.
+  return text.replace(/(<([^>]+)>)/gi, "");
+}
+
+export function getStorageKey() {
+  return "favKey";
+}
+
+export async function getImageList() {
+  const response = await fetch(imageBase);
+  const data = await response.json();
+  return data;
+}
+
+export function removeFromLocalStorage(key, value) {
+  console.log("test");
+  let favorites = getLocalStorage(key);
+  console.log(favorites);
+  let newList = favorites.filter((item) => item.id != value);
+  setLocalStorage(key, newList);
 }

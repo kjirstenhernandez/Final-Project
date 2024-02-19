@@ -1,4 +1,5 @@
-import { renderListWithTemplate } from "../utils/utils.mjs";
+import { renderListWithTemplate, getTextFromHTML } from "../utils/utils.mjs";
+import CatDetails from "./catDetails.mjs";
 
 export default class BreedList {
   constructor(data, parentElement) {
@@ -8,27 +9,25 @@ export default class BreedList {
 
   async initialize() {
     const catData = await this.dataSource.getData();
-    const imageData = await this.dataSource.getImageList();
-
-    this.buildCatList(catData, imageData);
+    this.buildCatList(catData);
   }
 
   // buildList(){}
 
-  buildCatList(catData, imageData) {
+  buildCatList(catData) {
     renderListWithTemplate(basicCatCardTemplate, this.element, catData);
+
+    document.querySelectorAll(".cat-card").forEach((item) => {
+      item.addEventListener("click", (event) => {
+        const catName = event.target.innerHTML;
+        const catDetails = new CatDetails(catName, this.dataSource);
+        catDetails.initialize();
+      });
+    });
   }
 }
 
 // basic template for each cat card (used for "Breeds")
-function basicCatCardTemplate(cat, image) {
-  return `<li class="cat-card">
-    <a class="card_image" href="/breed_detail/?cat=${cat.id}">
-        <img
-            src="${image}"
-            alt="${cat.name} Cat"
-            width="100">
-        <p class="card_name">${cat.name}</p>
-    </a>
-    </li>`;
+function basicCatCardTemplate(cat) {
+  return `<li class="cat-card">${cat.name}</li>`;
 }
