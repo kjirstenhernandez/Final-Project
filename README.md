@@ -1,17 +1,19 @@
 # Overview
 
-Using the Parcel framework, **catlas** is a website meant for cat people.  It allows you to view every domesticated cat breed in the world, and uses local storage to allow users to add or remove cat breeds to or from their favorites list. It fetches the breeds from The Cat API, and dynamically loads all pages, which includes the breed overpage as well as a detailed page when a specific breed is selected.  It also features a yarn mouse as an cursor and a javascript image carousel.   
+**Catlas** is a website built for cat lovers using the Parcel framework. It allows users to explore every domesticated cat breed in the world and provides a way to save favorite breeds using local storage. The site fetches breed data from [The Cat API](https://thecatapi.com/) and dynamically loads pages, including a breed overview and a detailed page for each selected breed.
 
-By creating this software I've provided both an excellent reference website for any domesticated cat breed and a visually pleasing site to freely visit to look at cat pictures anytime excess seratonin is needed.  
+Catlas also features a playful design, including a yarn mouse cursor and a JavaScript image carousel.
+
+By creating this website, I’ve provided both an excellent reference for domesticated cat breeds and a visually enjoyable space where anyone can browse cat pictures whenever they need a serotonin boost.
 
 # Development Environment
 
-Visual Studio Code was the software used to create the code to build this website using Javascript.
+The website was developed using JavaScript in Visual Studio Code.
 
 ## Live Website
-https://catsandcatsandcats.netlify.app/
+[Catlas: Explore Cat Breeds](https://catsandcatsandcats.netlify.app/)
 
-# Commands
+### Commands
 
 npm start: start server
 npm run build: create performance build of app
